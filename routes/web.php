@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::match(['get','post'], '/', 'Auth\AuthController@login_check')->name('login_check');
 
 Auth::routes();
 
