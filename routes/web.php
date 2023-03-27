@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'Auth\AuthController@login')->name('login');
+Route::post('/loginCheck', 'Auth\AuthController@login_check')->name('login_check');
+Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
-Route::match(['get','post'], '/', 'Auth\AuthController@login_check')->name('login_check');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');

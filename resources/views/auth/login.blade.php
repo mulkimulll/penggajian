@@ -99,10 +99,10 @@
 
                         </div>
                     </div>
-                    <div class="mt-5 text-center position-relative">
+                    {{-- <div class="mt-5 text-center position-relative">
                         <p class="text-white-50">Tidak punya akun ? <a href="{{ route('register') }}"
                                 class="fw-bold text-white"> Daftar </a> </p>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
