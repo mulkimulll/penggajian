@@ -21,6 +21,9 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard
 
 // master jabatan
 Route::match(['get', 'post'], '/master-jabatan', 'Jabatan\JabatanController@index')->name('jabatan');
+Route::get('/jabatan-destroy/{id}', 'Jabatan\JabatanController@destroy')->name('hapus.jabatan');
+Route::get('/get-jabatan/{id}', 'Jabatan\JabatanController@get')->name('get.jabatan');
+Route::post('edit-jabatan/{id}', 'Jabatan\JabatanController@editPost')->name('edit.jabatan');
 
 // master karyawan
 Route::get('/master-karyawan', 'Karyawan\KaryawanController@index')->name('karyawan');

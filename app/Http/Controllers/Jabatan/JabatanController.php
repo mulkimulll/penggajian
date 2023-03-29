@@ -22,4 +22,29 @@ class JabatanController extends Controller
 
         return view('Jabatan.index',compact('data'));
     }
+
+    public function get($id)
+    {
+        $data = Jabatan::where('id', $id)->first();
+
+        return response()->json($data, 200);
+    }
+
+    public function editPost(request $request, $id)
+    {
+        $edit = Jabatan::find($id);
+        $edit->update([
+            'nama' => $request->nama
+        ]);
+
+        return redirect()->back()->with('success', 'Berhasil Ubah Data');
+    }
+
+    public function destroy($id)
+    {
+        $del = Jabatan::find($id);
+        $del->delete();
+
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
+    }
 }

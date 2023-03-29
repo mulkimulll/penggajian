@@ -40,7 +40,7 @@
                             <tr>
                                 <th>NO</th>
                                 <th>Nama Jabatan</th>
-                                <th>Aksi</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,10 +48,12 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $jabatan->nama }}</td>
-                                    <td>
-                                        <a href="" class="btn btn-sm btn-primary"><i
-                                                class="dripicons-document-edit"></i></a>
-                                        <a href="" class="btn btn-sm btn-danger"><i class="dripicons-trash"></i></a>
+                                    <td class="text-center">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target='#editModal'
+                                            data-id="{{ $jabatan->id }}" data-nama="{{ $jabatan->nama }}"
+                                            class="btn btn-primary openModal"><i class="dripicons-pencil"></i></a>
+                                        <a href="{{ route('hapus.jabatan', $jabatan->id) }}" class="btn btn-danger"><i
+                                                class="dripicons-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -62,7 +64,7 @@
         </div>
     </div>
 
-    <!-- sample modal content -->
+    <!-- modal input -->
     <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -85,6 +87,32 @@
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Simpan</button>
                     </div>
                 </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- modal edit -->
+    <div id="editModal" class="modal fade" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="editModalLabel">Tambah Iuran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        <label for="kode_rumah" class="col-sm-3 form-label">Nama Jabatan</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="nama" class="form-control" name="nama">
+                            <input type="hidden" id="id_jabatan" class="form-control" name="id_jabatan">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Tutup</button>
+                    <button id="submit" type="submit"
+                        class="btn btn-primary waves-effect waves-light">Simpan</button>
+                </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -139,6 +167,21 @@
     <script>
         $(document).ready(function() {
             $('#datatable').DataTable();
+        });
+
+        $('.openModal').on('click', function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+
+            $.get('get-jabatan/' + id, function(data) {
+                // console.log(data);
+                $('#nama').val(data.nama);
+                $('#id_jabatan').val(data.id);
+            })
+
+            $.ajax({
+
+            });
         });
     </script>
 @endsection
