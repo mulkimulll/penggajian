@@ -16,4 +16,17 @@ Route::get('/', 'Auth\AuthController@login')->name('login');
 Route::post('/loginCheck', 'Auth\AuthController@login_check')->name('login_check');
 Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
+// dashboard
 Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+
+// master jabatan
+Route::match(['get', 'post'], '/master-jabatan', 'Jabatan\JabatanController@index')->name('jabatan');
+
+// master karyawan
+Route::get('/master-karyawan', 'Karyawan\KaryawanController@index')->name('karyawan');
+
+// master penggajian
+Route::get('/penggajian', 'Penggajian\PenggajianController@index')->name('penggajian');
+
+// master pinjaman
+Route::get('/pinjaman', 'Pinjaman\PinjamanController@index')->name('pinjaman');

@@ -2,29 +2,14 @@
     <div data-simplebar class="h-100">
         <div id="sidebar-menu">
             <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title text-uppercase">Main</li>
                 <li><a href="{{ route('dashboard') }}"><i class="dripicons-home"></i> Dashboard</a></li>
-                {{-- <li>
-                    <a href="#" class="has-arrow waves-effect">
-                        <i class="dripicons-box"></i>
-                        <span>Master Data</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('master.ipl') }}">IPL</a></li>
-                        <li><a href="{{ route('data.rumah') }}">Rumah</a></li>
-                        <li><a href="{{ route('iuran') }}">Iuran</a></li>
-                        <li><a href="{{ route('data.warga') }}">Warga</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="has-arrow waves-effect">
-                        <i class="dripicons-box"></i>
-                        <span>Billing</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('billing.list') }}">List Billing</a></li>
-                        <li><a href="{{ route('billing') }}">Generate Billiing</a></li>
-                    </ul>
-                </li> --}}
+                <li><a href="{{ route('penggajian') }}"><i class="dripicons-wallet"></i> Penggajian</a></li>
+                <li><a href="{{ route('pinjaman') }}"><i class="dripicons-document"></i> Pinjaman</a></li>
+
+                <li class="menu-title text-uppercase">Master Data</li>
+                <li><a href="{{ route('jabatan') }}"><i class="dripicons-user"></i> Data Jabatan</a></li>
+                <li><a href="{{ route('karyawan') }}"><i class="dripicons-user-group"></i> Data karyawan</a></li>
             </ul>
         </div>
     </div>
