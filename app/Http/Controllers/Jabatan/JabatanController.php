@@ -30,9 +30,9 @@ class JabatanController extends Controller
         return response()->json($data, 200);
     }
 
-    public function editPost(request $request, $id)
+    public function editPost(request $request)
     {
-        $edit = Jabatan::find($id);
+        $edit = Jabatan::find($request->id);
         $edit->update([
             'nama' => $request->nama
         ]);
