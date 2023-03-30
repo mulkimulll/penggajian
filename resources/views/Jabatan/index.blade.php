@@ -111,7 +111,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary waves-effect tutup"
+                        data-bs-dismiss="modal">Tutup</button>
                     <button id="submit" type="submit"
                         class="btn btn-primary waves-effect waves-light">Simpan</button>
                 </div>
@@ -146,42 +147,40 @@
         $(document).ready(function() {
             $('#datatable').DataTable();
         });
-
+        // show data modal popup
         $('.openModal').on('click', function() {
             var id = $(this).data('id');
-            var nama = $(this).data('nama');
 
-            // $.get('get-jabatan/' + id, function(data) {
-            //     // console.log(data);
-            //     $('#nama').val(data.nama);
-            //     $('#id_jabatan').val(data.id);
-            // })
-
-            $('#submit').click(function() {
-                // console.log(nama);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                var formData = {
-                    id: id,
-                    nama: $('#nama').val()
-                }
-
-                $.ajax({
-                    url: "{{ route('edit.jabatan') }}",
-                    type: 'post',
-                    data: formData,
-                    success: function(data) {
-                        location.reload();
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
+            $.get('get-jabatan/' + id, function(data) {
+                $('#nama').val(data.nama);
+                $('#id_jabatan').val(data.id);
             })
         });
+        // simpan data
+        $('#submit').click(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var id = $('#id_jabatan').val();
+            var formData = {
+                id: id,
+                nama: $('#nama').val()
+            }
+
+            $.ajax({
+                url: "{{ route('edit.jabatan') }}",
+                type: 'post',
+                data: formData,
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        })
     </script>
 @endsection
